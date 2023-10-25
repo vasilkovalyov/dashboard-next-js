@@ -1,4 +1,11 @@
+import Link from 'next/link';
 import type { Metadata } from 'next';
+
+import styles from './page.module.scss';
+import { Button } from '@/components';
+
+import { Pages } from '@/constnts/routes';
+
 // import Image from 'next/image';
 
 {
@@ -18,5 +25,15 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  return <div></div>;
+  return (
+    <section className={styles['section-home']}>
+      <div className="container">
+        <h1>
+          Unsplash API -{' '}
+          <Link href="https://api.unsplash.com">https://api.unsplash.com</Link>
+        </h1>
+        <Button href={Pages.POSTS}>Summary page</Button>
+      </div>
+    </section>
+  );
 }
