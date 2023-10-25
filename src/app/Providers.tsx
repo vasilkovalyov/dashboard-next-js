@@ -7,11 +7,13 @@ export default function Providers({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState<boolean>(false);
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
+    if (!mounted) {
+      setMounted(true);
+    }
+  }, [mounted]);
 
   if (!mounted) {
-    return <>{children}</>;
+    return null;
   }
 
   return <ThemeProvider>{children}</ThemeProvider>;

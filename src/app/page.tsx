@@ -28,7 +28,7 @@ export default function Home() {
   return (
     <section className={styles['section-home']}>
       <div className="container">
-        <h1>
+        <h1 className={styles['section-home__heading']}>
           Unsplash API -{' '}
           <Link href="https://api.unsplash.com">https://api.unsplash.com</Link>
         </h1>
