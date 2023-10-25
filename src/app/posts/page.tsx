@@ -1,20 +1,14 @@
 'use client';
 
-import { useEffect, useLayoutEffect, useState } from 'react';
-// import type { Metadata } from 'next';
+import { useEffect, useState } from 'react';
 
 import styles from './page.module.scss';
 
 import UnsplashService from '@/services/unsplash';
 import { ITopic } from '@/types/topic';
-import { TopicItemProps, TopicsList } from '@/components';
+import { TopicItemProps, TopicsList, PhotoCardList } from '@/components';
 
 const service = new UnsplashService();
-
-// export const metadata: Metadata = {
-//   title: 'Posts',
-//   description: 'Posts',
-// };
 
 const convertTopicsForComponent = (topics: ITopic[]): TopicItemProps[] => {
   return topics.map((item) => {
@@ -22,12 +16,14 @@ const convertTopicsForComponent = (topics: ITopic[]): TopicItemProps[] => {
       id: item.id,
       slug: item.slug,
       title: item.title,
+      total_photos: item.total_photos,
     };
   });
 };
 
 export default function Posts() {
   const [topicts, setTopics] = useState<TopicItemProps[]>([]);
+  const [photos, setPhotos] = useState<any[]>([]);
 
   async function loadTopics() {
     try {
@@ -38,8 +34,19 @@ export default function Posts() {
     }
   }
 
+  async function loadPhotos() {
+    try {
+      const response = await service.getPhotos(1);
+      console.log('response', response);
+      setPhotos(response.data);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   useEffect(() => {
     loadTopics();
+    loadPhotos();
   }, []);
 
   function onChooseTopic(value: string) {
@@ -50,7 +57,10 @@ export default function Posts() {
     <section className={styles['section-posts']}>
       <div className="container">
         <h1>Posts</h1>
-        <TopicsList topics={topicts} onChange={onChooseTopic} />
+        <div className={styles['section-posts__body']}>
+          <TopicsList topics={topicts} onChange={onChooseTopic} />
+          <PhotoCardList posts={photos} />
+        </div>
       </div>
     </section>
   );
