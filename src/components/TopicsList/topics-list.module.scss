@@ -1,0 +1,12 @@
+.topics-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  & &__item {
+    margin-bottom: 8px;
+
+    &:not(:last-child) {
+      margin-right: 8px;
+    }
+  }
+}
