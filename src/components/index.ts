@@ -6,3 +6,5 @@ export * from './TopicsList';
 export { PhotoCard } from './PhotoCard';
 export { PhotoCardList } from './PhotoCardList';
 export * from './UserLabelDescription';
+export { BannerSearch } from './BannerSearch';
+export { Search } from './Search';

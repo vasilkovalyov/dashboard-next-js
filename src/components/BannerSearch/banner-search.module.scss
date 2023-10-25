@@ -1,0 +1,12 @@
+.banner-search {
+  position: relative;
+  padding: 140px 0;
+  background-color: #000000;
+  color: #ffffff;
+
+  & &__description {
+    margin-bottom: 20px;
+  }
+  & &__image {
+  }
+}
