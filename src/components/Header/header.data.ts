@@ -9,7 +9,7 @@ export const headerMenu: NavbarMenuItem[] = [
   },
   {
     id: '2',
-    path: Pages.POSTS,
-    name: 'Posts',
+    path: Pages.PHOTOS,
+    name: 'Photos',
   },
 ];

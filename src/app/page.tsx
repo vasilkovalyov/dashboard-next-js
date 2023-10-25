@@ -19,7 +19,7 @@ export default function Home() {
           Unsplash API -{' '}
           <Link href="https://api.unsplash.com">https://api.unsplash.com</Link>
         </h1>
-        <Button href={Pages.POSTS} size="large">
+        <Button href={Pages.PHOTOS} size="large">
           Summary page
         </Button>
       </div>

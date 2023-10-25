@@ -1,4 +1,4 @@
 export enum Pages {
   HOME = '/',
-  POSTS = '/posts',
+  PHOTOS = '/photos',
 }
