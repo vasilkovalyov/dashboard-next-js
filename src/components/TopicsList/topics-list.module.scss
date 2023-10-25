@@ -20,7 +20,11 @@
   }
 
   & &__link--active {
-    color: #ffffff;
-    background-color: #000000;
+    color: #000000;
+    background-color: #ffffff;
+
+    &:hover {
+      background-color: #ffffff;
+    }
   }
 }

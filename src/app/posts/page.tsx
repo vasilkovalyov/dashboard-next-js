@@ -22,6 +22,7 @@ const convertTopicsForComponent = (topics: ITopic[]): TopicItemProps[] => {
 };
 
 export default function Posts() {
+  const [loadingPhotos, setLoadingPhotos] = useState<boolean>(false);
   const [topicts, setTopics] = useState<TopicItemProps[]>([]);
   const [photos, setPhotos] = useState<any[]>([]);
 
@@ -36,11 +37,13 @@ export default function Posts() {
 
   async function loadPhotos() {
     try {
+      setLoadingPhotos(true);
       const response = await service.getPhotos(1);
-      console.log('response', response);
       setPhotos(response.data);
     } catch (e) {
       console.log(e);
+    } finally {
+      setLoadingPhotos(false);
     }
   }
 
@@ -49,8 +52,17 @@ export default function Posts() {
     loadPhotos();
   }, []);
 
-  function onChooseTopic(value: string) {
-    console.log(value);
+  async function onChooseTopic(topic: string) {
+    try {
+      setLoadingPhotos(true);
+      setPhotos([]);
+      const response = await service.getPhotosByTopic(topic);
+      setPhotos(response.data);
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setLoadingPhotos(false);
+    }
   }
 
   return (
@@ -59,7 +71,17 @@ export default function Posts() {
         <h1>Posts</h1>
         <div className={styles['section-posts__body']}>
           <TopicsList topics={topicts} onChange={onChooseTopic} />
-          <PhotoCardList posts={photos} />
+          {loadingPhotos ? (
+            <div>Loading...</div>
+          ) : (
+            <>
+              {photos.length ? (
+                <PhotoCardList posts={photos} />
+              ) : (
+                <div>No photos</div>
+              )}
+            </>
+          )}
         </div>
       </div>
     </section>

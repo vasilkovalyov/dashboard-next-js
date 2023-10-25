@@ -24,6 +24,16 @@ class UnsplashService {
     );
     return response;
   }
+
+  async getPhotosByTopic(
+    topic: string,
+    page: number = 1
+  ): Promise<AxiosResponse<IPhoto[]>> {
+    const response = await axios.get(
+      `${this.baseUrl}/topics/${topic}/photos?client_id=${this.clientId}&page=${page}`
+    );
+    return response;
+  }
 }
 
 export default UnsplashService;
