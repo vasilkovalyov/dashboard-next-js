@@ -1,0 +1,21 @@
+.button {
+  padding: 12px 20px;
+  border-radius: 4px;
+  background-color: #000000;
+  color: #ffffff;
+
+  transition: 0.3s background-color linear;
+
+  &:hover {
+    background-color: rgba(#000000, 0.5);
+  }
+
+  [data-theme='dark'] & {
+    color: #000000;
+    background-color: #ffffff;
+
+    &:hover {
+      background-color: rgba(#ffffff, 0.5);
+    }
+  }
+}
