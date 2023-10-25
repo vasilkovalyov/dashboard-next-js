@@ -4,8 +4,31 @@ import styles from './button.module.scss';
 
 import { ButtonProps } from './button.type';
 
-export default function Button({ href, children, className }: ButtonProps) {
-  const baseClassname = cn(styles['button'], className);
+export default function Button({
+  href,
+  children,
+  className,
+  variant,
+  size = 'small',
+  ...rest
+}: ButtonProps) {
+  const buttonVariantClassnames = cn({
+    [styles['button--outlined']]: variant === 'outlined',
+    [styles['button--text']]: variant === 'text',
+  });
+
+  const buttonSizeClassnames = cn({
+    [styles['button--small']]: size === 'small',
+    [styles['button--middle']]: size === 'middle',
+    [styles['button--large']]: size === 'large',
+  });
+
+  const baseClassname = cn(
+    styles['button'],
+    buttonVariantClassnames,
+    buttonSizeClassnames,
+    className
+  );
 
   if (href) {
     return (
@@ -15,5 +38,9 @@ export default function Button({ href, children, className }: ButtonProps) {
     );
   }
 
-  return <button className={baseClassname}>{children}</button>;
+  return (
+    <button className={baseClassname} {...rest}>
+      {children}
+    </button>
+  );
 }

@@ -1,13 +1,42 @@
 .button {
   padding: 12px 20px;
-  border-radius: 4px;
   background-color: #000000;
   color: #ffffff;
-
-  transition: 0.3s background-color linear;
+  transition: 0.3s color linear, 0.3s background-color linear;
 
   &:hover {
     background-color: rgba(#000000, 0.5);
+  }
+
+  &--small {
+    padding: 4px 8px;
+  }
+  &--middle {
+    padding: 8px 14px;
+  }
+  &--large {
+    padding: 12px 20px;
+  }
+
+  &--outlined {
+    color: #000000;
+    border: 2px solid #000000;
+    background-color: transparent;
+
+    &:hover {
+      opacity: 1;
+      color: #ffffff;
+      background-color: #000000;
+    }
+
+    [data-theme='dark'] & {
+      border-color: #000000;
+    }
+  }
+
+  &--text {
+    background-color: transparent;
+    padding: 0;
   }
 
   [data-theme='dark'] & {
