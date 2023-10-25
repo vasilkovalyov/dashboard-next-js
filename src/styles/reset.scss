@@ -158,18 +158,24 @@ Remove the inner padding in Chrome and Safari on macOS.
 Removes the default spacing and border for appropriate elements.
 */
 
-blockquote,
-dl,
-dd,
 h1,
 h2,
 h3,
 h4,
 h5,
-h6,
+h6 {
+  margin: 0 0 20px;
+}
+
+p {
+  margin-bottom: 16px;
+}
+
+blockquote,
+dl,
+dd,
 hr,
 figure,
-p,
 pre {
   margin: 0;
 }
