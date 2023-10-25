@@ -9,6 +9,7 @@ export default function Button({
   children,
   className,
   variant,
+  fullwidth = false,
   size = 'small',
   ...rest
 }: ButtonProps) {
@@ -27,6 +28,7 @@ export default function Button({
     styles['button'],
     buttonVariantClassnames,
     buttonSizeClassnames,
+    { [styles['button--fullwidth']]: fullwidth },
     className
   );
 

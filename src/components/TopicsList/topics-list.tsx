@@ -8,9 +8,11 @@ export default function TopicsList({ topics, onChange }: TopicsListProps) {
       {topics.map((topic) => (
         <li key={topic.id} className={styles['topics-list__item']}>
           <Button
-            variant="outlined"
+            variant="text"
             size="small"
+            fullwidth={true}
             onClick={() => onChange && onChange(topic.slug)}
+            className={styles['topics-list__link']}
           >
             {topic.title}
           </Button>

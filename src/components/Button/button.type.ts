@@ -9,4 +9,5 @@ export type ButtonProps = {
   href?: string;
   size?: ButtonSizeType;
   variant?: ButtonVariantType;
+  fullwidth?: boolean;
 } & Partial<ButtonHTMLAttributes<HTMLButtonElement>>;

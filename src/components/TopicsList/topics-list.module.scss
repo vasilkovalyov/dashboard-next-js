@@ -1,6 +1,8 @@
 .topics-list {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
+  padding: 10px 0;
 
   & &__item {
     margin-bottom: 8px;
@@ -8,5 +10,17 @@
     &:not(:last-child) {
       margin-right: 8px;
     }
+  }
+
+  & &__link {
+    display: inline-flex;
+    justify-content: space-between;
+    text-align: left;
+    font-size: 16px;
+  }
+
+  & &__link--active {
+    color: #ffffff;
+    background-color: #000000;
   }
 }
