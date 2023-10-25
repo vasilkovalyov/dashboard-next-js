@@ -4,6 +4,9 @@ const nextConfig = {
   env: {
     unsplashApiKey: process.env.UNSPLASH_API_KEY,
   },
+  images: {
+    domains: ['images.unsplash.com'],
+  },
 };
 
 module.exports = nextConfig;

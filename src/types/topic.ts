@@ -1,3 +1,5 @@
+import { IUrls } from './common';
+
 export interface ITopic {
   id: string;
   slug: string;
@@ -22,12 +24,5 @@ interface ITopicPreviewPhoto {
   created_at: string;
   updated_at: string;
   blur_hash: string;
-  urls: {
-    raw: string;
-    full: string;
-    regular: string;
-    small: string;
-    thumb: string;
-    small_s3: string;
-  };
+  urls: IUrls;
 }

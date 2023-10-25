@@ -1,0 +1,85 @@
+$white: #ffffff;
+$black: #000000;
+
+.photo-card {
+  position: relative;
+  margin-bottom: 20px;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($black, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s linear, visibility 0.3s linear;
+  }
+
+  &:hover::before {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &:hover &__bottom {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  & &__link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  & &__image {
+    img {
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+
+  & &__body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+  }
+
+  & &__bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    color: $white;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: opacity 0.3s linear, transform 0.3s linear;
+    opacity: 0;
+    z-index: 2;
+    transform: translateY(10px);
+  }
+
+  & &__like {
+    display: flex;
+    align-content: center;
+  }
+  & &__like-icon {
+    fill: $white;
+    margin-right: 4px;
+  }
+  & &__like-number {
+    color: $white;
+    margin: 0;
+  }
+}

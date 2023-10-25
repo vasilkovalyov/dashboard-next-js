@@ -1,0 +1,9 @@
+.photo-card-list {
+  @media (min-width: 580px) {
+    column-count: 2;
+  }
+
+  @media (min-width: 1024px) {
+    column-count: 3;
+  }
+}
