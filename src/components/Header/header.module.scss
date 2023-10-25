@@ -1,5 +1,12 @@
 .header {
+  position: relative;
+  z-index: 1;
   padding: 20px 0;
+  box-shadow: 0 -5px 19px -3px rgba(0, 0, 0, 0.75);
+
+  [data-theme='dark'] & {
+    box-shadow: 0 -5px 19px -3px rgba(255, 255, 255, 0.75);
+  }
 
   & &__container {
     display: flex;
@@ -15,5 +22,9 @@
   & &__logo {
     max-width: 130px;
     width: 100%;
+
+    h2 {
+      margin-bottom: 0;
+    }
   }
 }
