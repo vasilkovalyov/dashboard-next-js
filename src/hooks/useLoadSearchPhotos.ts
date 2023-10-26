@@ -4,11 +4,11 @@ import { useState } from 'react';
 import UnsplashService from '@/services/unsplash';
 import { IPhoto } from '@/types/photo';
 
-export function useLoadSearchPhotos() {
+export function useLoadSearchPhotos(page: number = 1) {
   const service = new UnsplashService();
   const [loadingPhotos, setLoadingPhotos] = useState<boolean>(false);
   const [photos, setPhotos] = useState<IPhoto[]>([]);
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [currentPage, setCurrentPage] = useState<number>(page);
   const [pagesPaginationInfo, setPagesPaginationInfo] = useState<{
     total: number;
     total_pages: number;

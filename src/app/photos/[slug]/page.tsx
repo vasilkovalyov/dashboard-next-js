@@ -1,5 +1,6 @@
 'use client';
 
+import { usePathname, useRouter } from 'next/navigation';
 import Pagination from 'react-js-pagination';
 import { PhotoCardList } from '@/components';
 import styles from './page.module.scss';
@@ -11,7 +12,15 @@ function convertToString(search: string) {
   return search.replace(/-/g, ' ');
 }
 
-export default function Topic(props: { params: { slug: string } }) {
+type PageParamsType = {
+  params: { slug: string };
+  searchParams: { page: number };
+};
+
+export default function Topic(props: PageParamsType) {
+  const router = useRouter();
+  const pathname = usePathname();
+
   const {
     photos,
     currentPage,
@@ -19,7 +28,7 @@ export default function Topic(props: { params: { slug: string } }) {
     pagesPaginationInfo,
     setCurrentPage,
     loadSearchPhotos,
-  } = useLoadSearchPhotos();
+  } = useLoadSearchPhotos(+props.searchParams.page || 1);
   const { params } = props;
   const paginationSizePages = 4;
   const perPage = 10;
@@ -27,6 +36,11 @@ export default function Topic(props: { params: { slug: string } }) {
   useEffect(() => {
     loadSearchPhotos(params.slug, currentPage);
   }, [currentPage]);
+
+  function onChangePage(page: number) {
+    router.push(`${pathname}?page=${page}`);
+    setCurrentPage(page);
+  }
 
   return (
     <section className={styles['section-photo']}>
@@ -44,7 +58,7 @@ export default function Topic(props: { params: { slug: string } }) {
                   itemsCountPerPage={perPage}
                   totalItemsCount={pagesPaginationInfo.total}
                   pageRangeDisplayed={paginationSizePages}
-                  onChange={(pageNumber) => setCurrentPage(pageNumber)}
+                  onChange={onChangePage}
                 />
               </>
             ) : (

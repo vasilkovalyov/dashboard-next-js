@@ -6,6 +6,8 @@
 
   li {
     &.active {
+      pointer-events: none;
+
       a {
         color: #ffffff;
         background-color: #000000;
