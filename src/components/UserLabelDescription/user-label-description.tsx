@@ -16,7 +16,15 @@ export default function UserLabelDescription({
   return (
     <div className={cn(styles['user-label-description'], className)}>
       <div className={cn(styles['user-label-description__image'], sizeCn)}>
-        <Image width={50} height={50} src={src} alt={userName} />
+        <Image
+          width={50}
+          height={50}
+          priority
+          src={src}
+          alt={userName}
+          placeholder="blur"
+          blurDataURL="/avatar-placeholder.jpg"
+        />
       </div>
       <p className={styles['user-label-description__username']}>{userName}</p>
     </div>

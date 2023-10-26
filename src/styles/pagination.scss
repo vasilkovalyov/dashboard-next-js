@@ -1,3 +1,5 @@
+@import '@/styles/variables.scss';
+
 .pagination {
   display: flex;
   align-items: center;
@@ -9,18 +11,18 @@
       pointer-events: none;
 
       a {
-        color: #ffffff;
-        background-color: #000000;
+        color: $white;
+        background-color: $black;
 
         [data-theme='dark'] & {
-          color: #000000;
-          background-color: #ffffff;
+          color: $black;
+          background-color: $white;
         }
       }
     }
     a {
       padding: 2px;
-      border: 1px solid #000000;
+      border: 1px solid $black;
       width: 30px;
       height: 30px;
       font-size: 12px;
@@ -30,8 +32,8 @@
       transition: 0.3s opacity linear;
 
       [data-theme='dark'] & {
-        color: #ffffff;
-        border-color: #ffffff;
+        color: white;
+        border-color: white;
       }
 
       &:hover {

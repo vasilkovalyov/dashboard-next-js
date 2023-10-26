@@ -130,6 +130,7 @@ Powered by creators everywhere."
                     <Button
                       size="middle"
                       variant="outlined"
+                      disabled={loading}
                       onClick={onNextPage}
                     >
                       {loading ? 'Loading...' : 'Load more'}

@@ -1,3 +1,5 @@
+@import '@/styles/variables.scss';
+
 .topics-list {
   display: flex;
   align-items: center;
@@ -20,11 +22,11 @@
   }
 
   & &__link--active {
-    color: #000000;
-    background-color: #ffffff;
+    color: $black;
+    background-color: $white;
 
     &:hover {
-      background-color: #ffffff;
+      background-color: $white;
     }
   }
 }
