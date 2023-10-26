@@ -1,5 +1,11 @@
 import { IPhotoUser } from './photo-user';
-import { IRelatedPhotoCollection } from './related-photo-collection';
+
+export type OrderByType =
+  | 'latest'
+  | 'oldest'
+  | 'popular'
+  | 'views'
+  | 'downloads';
 
 export interface IUrls {
   raw: string;

@@ -11,3 +11,4 @@ export { Search } from './Search';
 export { Tags } from './Tags';
 export * from './RelatedCollections';
 export { RelatedPhotoCollection } from './RelatedPhotoCollection';
+export * from './Select';

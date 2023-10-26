@@ -3,6 +3,7 @@ import { IPhoto } from '@/types/photo';
 import { ITopic } from '@/types/topic';
 import axios, { AxiosResponse } from 'axios';
 import { PostsWithPaginationInfo } from '@/types/response';
+import { OrderByType } from '@/types/common';
 
 class UnsplashService {
   private baseUrl: string;
@@ -20,19 +21,23 @@ class UnsplashService {
     return response;
   }
 
-  async getPhotos(page: number = 1): Promise<AxiosResponse<IPhoto[]>> {
+  async getPhotos(
+    page: number = 1,
+    order_by: OrderByType = 'latest'
+  ): Promise<AxiosResponse<IPhoto[]>> {
     const response = await axios.get(
-      `${this.baseUrl}/photos?client_id=${this.clientId}&page=${page}`
+      `${this.baseUrl}/photos?client_id=${this.clientId}&page=${page}&order_by=${order_by}`
     );
     return response;
   }
 
   async getPhotosByTopic(
     topic: string,
-    page: number = 1
+    page: number = 1,
+    order_by: OrderByType = 'latest'
   ): Promise<AxiosResponse<IPhoto[]>> {
     const response = await axios.get(
-      `${this.baseUrl}/topics/${topic}/photos?client_id=${this.clientId}&page=${page}`
+      `${this.baseUrl}/topics/${topic}/photos?client_id=${this.clientId}&page=${page}&order_by=${order_by}`
     );
     return response;
   }
