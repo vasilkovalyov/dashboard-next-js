@@ -51,27 +51,29 @@ export default function Topic(props: PageParamsType) {
     <section className={styles['section-photo']}>
       <div className="container">
         <h1>{convertToString(params.slug)}</h1>
-        {loadingPhotos ? (
-          <div>Loading...</div>
-        ) : (
-          <>
-            {photos.length ? (
-              <>
-                <PhotoCardList photos={photos} />
-                <div ref={containerRef}></div>
-                <Pagination
-                  activePage={currentPage}
-                  itemsCountPerPage={perPage}
-                  totalItemsCount={pagesPaginationInfo.total}
-                  pageRangeDisplayed={paginationSizePages}
-                  onChange={onChangePage}
-                />
-              </>
-            ) : (
-              <div>No photos</div>
-            )}
-          </>
-        )}
+        <div className={styles['section-photo__grid']}>
+          {loadingPhotos ? (
+            <div>Loading...</div>
+          ) : (
+            <>
+              {photos.length ? (
+                <>
+                  <PhotoCardList photos={photos} />
+                  <div ref={containerRef}></div>
+                  <Pagination
+                    activePage={currentPage}
+                    itemsCountPerPage={perPage}
+                    totalItemsCount={pagesPaginationInfo.total}
+                    pageRangeDisplayed={paginationSizePages}
+                    onChange={onChangePage}
+                  />
+                </>
+              ) : (
+                <div>No photos</div>
+              )}
+            </>
+          )}
+        </div>
       </div>
     </section>
   );

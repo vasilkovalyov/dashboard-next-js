@@ -1,3 +1,7 @@
 .section-photo {
   padding: 40px 0;
+
+  & &__grid {
+    min-height: 300px;
+  }
 }

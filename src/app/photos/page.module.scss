@@ -1,7 +1,7 @@
 .section-photos {
   padding: 40px 0;
 
-  &__head {
+  & &__head {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -9,7 +9,11 @@
     margin-bottom: 20px;
   }
 
-  &__heading {
+  & &__heading {
     margin-bottom: 0;
+  }
+
+  & &__grid {
+    min-height: 300px;
   }
 }

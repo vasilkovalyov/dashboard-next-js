@@ -132,23 +132,25 @@ Powered by creators everywhere."
           </div>
 
           <TopicsList topics={topicts} onChange={onChooseTopic} />
-          {loadingPhotos ? (
-            <div>Loading...</div>
-          ) : (
-            <>
-              {photos.length ? (
-                <>
-                  <PhotoCardList photos={photos} />
-                  <div ref={containerRef}></div>
-                  <Button size="middle" variant="outlined" onClick={nextPage}>
-                    {loadingPhotos ? 'Loading...' : 'Load more'}
-                  </Button>
-                </>
-              ) : (
-                <div>No photos</div>
-              )}
-            </>
-          )}
+          <div className={styles['section-photos__grid']}>
+            {loadingPhotos ? (
+              <div>Loading...</div>
+            ) : (
+              <>
+                {photos.length ? (
+                  <>
+                    <PhotoCardList photos={photos} />
+                    <div ref={containerRef}></div>
+                    <Button size="middle" variant="outlined" onClick={nextPage}>
+                      {loadingPhotos ? 'Loading...' : 'Load more'}
+                    </Button>
+                  </>
+                ) : (
+                  <div>No photos</div>
+                )}
+              </>
+            )}
+          </div>
         </div>
       </section>
     </>
