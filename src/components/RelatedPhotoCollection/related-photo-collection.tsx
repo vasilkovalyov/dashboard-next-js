@@ -22,6 +22,9 @@ export default function RelatedPhotoCollection({
             alt={photo.slug}
             width={300}
             height={200}
+            priority
+            placeholder="blur"
+            blurDataURL="/placeholder.jpg"
           />
         ))}
       </div>

@@ -55,6 +55,9 @@ export default async function PhotoSingle(props: { params: { id: string } }) {
             height={500}
             src={urls.regular}
             alt={alt_description}
+            priority
+            placeholder="blur"
+            blurDataURL="/placeholder.jpg"
           />
         </div>
         <div className={styles['section-photo-single__counters']}>

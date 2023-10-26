@@ -24,6 +24,9 @@ export default function PhotoCard({
           src={urls.regular}
           width={500}
           height={500}
+          priority
+          placeholder="blur"
+          blurDataURL="/placeholder.jpg"
           alt={alt_description}
           sizes="(min-width: 60em) 24vw,
                     (min-width: 28em) 45vw,

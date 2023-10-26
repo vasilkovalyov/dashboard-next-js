@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import styles from './page.module.scss';
 
@@ -29,6 +29,8 @@ const convertTopicsForComponent = (topics: ITopic[]): TopicItemProps[] => {
 };
 
 export default function Photos() {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
   const {
     photos,
     loadingPhotos,
@@ -37,7 +39,9 @@ export default function Photos() {
     setPhotos,
     nextPage,
     setActiveTopic,
-  } = useLoadPhotos();
+  } = useLoadPhotos({
+    containerRef,
+  });
   const [topicts, setTopics] = useState<TopicItemProps[]>([]);
 
   async function loadTopics() {
@@ -86,6 +90,7 @@ Powered by creators everywhere."
               {photos.length ? (
                 <>
                   <PhotoCardList photos={photos} />
+                  <div ref={containerRef}></div>
                   <Button size="middle" variant="outlined" onClick={nextPage}>
                     {loadingPhotos ? 'Loading...' : 'Load more'}
                   </Button>

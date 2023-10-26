@@ -1,10 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+import { RefObject, useState } from 'react';
 import UnsplashService from '@/services/unsplash';
 import { IPhoto } from '@/types/photo';
 
-export function useLoadSearchPhotos(page: number = 1) {
+export function useLoadSearchPhotos({
+  page = 1,
+  containerRef,
+}: {
+  page: number;
+  containerRef?: RefObject<HTMLDivElement | null>;
+}) {
   const service = new UnsplashService();
   const [loadingPhotos, setLoadingPhotos] = useState<boolean>(false);
   const [photos, setPhotos] = useState<IPhoto[]>([]);
@@ -27,6 +33,9 @@ export function useLoadSearchPhotos(page: number = 1) {
           total,
           total_pages,
         });
+        if (containerRef) {
+          containerRef.current?.scrollIntoView({ behavior: 'smooth' });
+        }
         setPhotos(results);
       }
     } catch (e) {

@@ -6,7 +6,7 @@ import { PhotoCardList } from '@/components';
 import styles from './page.module.scss';
 
 import { useLoadSearchPhotos } from '@/hooks/useLoadSearchPhotos';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 function convertToString(search: string) {
   return search.replace(/-/g, ' ');
@@ -18,6 +18,8 @@ type PageParamsType = {
 };
 
 export default function Topic(props: PageParamsType) {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
   const router = useRouter();
   const pathname = usePathname();
 
@@ -28,7 +30,10 @@ export default function Topic(props: PageParamsType) {
     pagesPaginationInfo,
     setCurrentPage,
     loadSearchPhotos,
-  } = useLoadSearchPhotos(+props.searchParams.page || 1);
+  } = useLoadSearchPhotos({
+    page: +props.searchParams.page || 1,
+    containerRef,
+  });
   const { params } = props;
   const paginationSizePages = 4;
   const perPage = 10;
@@ -53,6 +58,7 @@ export default function Topic(props: PageParamsType) {
             {photos.length ? (
               <>
                 <PhotoCardList photos={photos} />
+                <div ref={containerRef}></div>
                 <Pagination
                   activePage={currentPage}
                   itemsCountPerPage={perPage}

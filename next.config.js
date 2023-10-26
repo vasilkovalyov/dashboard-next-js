@@ -5,7 +5,7 @@ const nextConfig = {
     unsplashApiKey: process.env.UNSPLASH_API_KEY,
   },
   images: {
-    domains: ['images.unsplash.com', 'plus.unsplash.com'],
+    domains: ['images.unsplash.com', 'plus.unsplash.com', 'localhost'],
   },
 };
 
