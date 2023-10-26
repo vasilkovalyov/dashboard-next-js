@@ -49,6 +49,13 @@ class UnsplashService {
     );
     return response;
   }
+
+  async getRandomPhoto(): Promise<AxiosResponse<IPhoto>> {
+    const response = await axios.get(
+      `${this.baseUrl}/photos/random?client_id=${this.clientId}`
+    );
+    return response;
+  }
 }
 
 export default UnsplashService;
