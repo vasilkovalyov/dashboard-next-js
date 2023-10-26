@@ -12,6 +12,7 @@ export default function PhotoCard({
   alt_description,
   likes,
   user,
+  slug,
 }: PhotoCardProps) {
   const { profile_image, name } = user;
   return (
@@ -27,7 +28,7 @@ export default function PhotoCard({
           priority
           placeholder="blur"
           blurDataURL="/placeholder.jpg"
-          alt={alt_description}
+          alt={alt_description ?? slug}
           sizes="(min-width: 60em) 24vw,
                     (min-width: 28em) 45vw,
                     100vw"

@@ -9,7 +9,7 @@ export interface IPhoto {
   width: number;
   height: number;
   description: string;
-  alt_description: string;
+  alt_description: string | null;
   urls: IUrls;
   likes: number;
   current_user_collections: [];

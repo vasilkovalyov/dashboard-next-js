@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname, useRouter } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import styles from './page.module.scss';
 
@@ -39,20 +39,17 @@ const convertTopicsForComponent = (topics: ITopic[]): TopicItemProps[] => {
 export default function Photos({ searchParams }: PageParamsType) {
   const router = useRouter();
   const pathname = usePathname();
-  const containerRef = useRef<HTMLDivElement | null>(null);
 
   const {
     photos,
+    loading,
     loadingPhotos,
     activeOrder,
-    resetPage,
-    setLoadingPhotos,
-    setPhotos,
-    nextPage,
-    setActiveTopic,
+    activeTopic,
+    onNextPage,
     loadPhotoByOrder,
+    loadPhotoByCategory,
   } = useLoadPhotos({
-    containerRef,
     order_by: searchParams.order_by,
   });
   const [topicts, setTopics] = useState<TopicItemProps[]>([]);
@@ -70,24 +67,9 @@ export default function Photos({ searchParams }: PageParamsType) {
     loadTopics();
   }, []);
 
-  async function onChooseTopic(topic: string) {
-    try {
-      setLoadingPhotos(true);
-      resetPage();
-      setActiveTopic(topic);
-      setPhotos([]);
-      const response = await service.getPhotosByTopic(topic, 1, activeOrder);
-      setPhotos(response.data);
-    } catch (e) {
-      console.log(e);
-    } finally {
-      setLoadingPhotos(false);
-    }
-  }
-
   function onChangeOrderBy(value: OrderByType) {
     router.push(`${pathname}?order_by=${value}`);
-    loadPhotoByOrder(value);
+    loadPhotoByOrder(value, activeTopic ?? null);
   }
 
   return (
@@ -131,7 +113,12 @@ Powered by creators everywhere."
             />
           </div>
 
-          <TopicsList topics={topicts} onChange={onChooseTopic} />
+          <TopicsList
+            topics={topicts}
+            onChange={(value) =>
+              loadPhotoByCategory(value as OrderByType, activeOrder)
+            }
+          />
           <div className={styles['section-photos__grid']}>
             {loadingPhotos ? (
               <div>Loading...</div>
@@ -140,9 +127,12 @@ Powered by creators everywhere."
                 {photos.length ? (
                   <>
                     <PhotoCardList photos={photos} />
-                    <div ref={containerRef}></div>
-                    <Button size="middle" variant="outlined" onClick={nextPage}>
-                      {loadingPhotos ? 'Loading...' : 'Load more'}
+                    <Button
+                      size="middle"
+                      variant="outlined"
+                      onClick={onNextPage}
+                    >
+                      {loading ? 'Loading...' : 'Load more'}
                     </Button>
                   </>
                 ) : (
