@@ -1,3 +1,4 @@
+import { IPhotoSingleData } from '@/types/photo-single-data';
 import { IPhoto } from '@/types/photo';
 import { ITopic } from '@/types/topic';
 import axios, { AxiosResponse } from 'axios';
@@ -31,6 +32,20 @@ class UnsplashService {
   ): Promise<AxiosResponse<IPhoto[]>> {
     const response = await axios.get(
       `${this.baseUrl}/topics/${topic}/photos?client_id=${this.clientId}&page=${page}`
+    );
+    return response;
+  }
+
+  async searchPhoto(search: string): Promise<AxiosResponse<IPhoto[]>> {
+    const response = await axios.get(
+      `${this.baseUrl}/search/photos?client_id=${this.clientId}&page=1&query=${search}`
+    );
+    return response;
+  }
+
+  async getPhotoById(id: string): Promise<AxiosResponse<IPhotoSingleData>> {
+    const response = await axios.get(
+      `${this.baseUrl}/photos/${id}?client_id=${this.clientId}`
     );
     return response;
   }

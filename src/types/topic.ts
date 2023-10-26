@@ -1,4 +1,4 @@
-import { IUrls } from './common';
+import { IPreviewPhoto } from './common';
 
 export interface ITopic {
   id: string;
@@ -15,14 +15,5 @@ export interface ITopic {
   total_photos: number;
   current_user_contributions: [];
   total_current_user_submissions: null;
-  preview_photos: ITopicPreviewPhoto[];
-}
-
-interface ITopicPreviewPhoto {
-  id: string;
-  slug: string;
-  created_at: string;
-  updated_at: string;
-  blur_hash: string;
-  urls: IUrls;
+  preview_photos: IPreviewPhoto[];
 }

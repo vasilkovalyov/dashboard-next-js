@@ -8,6 +8,10 @@ import { BannerSearchProps } from './banner-search.type';
 import { Search } from '../Search';
 import { Pages } from '@/constnts/routes';
 
+function convertToSearchValue(search: string) {
+  return search.replace(/[\s!@#$%^&*()_+=[\]{}|;:'",.<>?\\/\-]+/g, '-');
+}
+
 export default function BannerSearch({
   heading,
   description,
@@ -17,8 +21,7 @@ export default function BannerSearch({
   const router = useRouter();
 
   function onSubmit(value: string) {
-    console.log(value);
-    router.push(`${Pages.PHOTOS}/${value}`);
+    router.push(`${Pages.PHOTOS}/${convertToSearchValue(value)}`);
   }
 
   return (

@@ -1,6 +1,6 @@
 import { IProfileImage } from './common';
 
-export interface IPostUser {
+export interface IPhotoUser {
   id: string;
   updated_at: string;
   username: string;

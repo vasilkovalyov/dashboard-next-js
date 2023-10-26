@@ -10,7 +10,7 @@ export default function PhotoCardList({ photos }: PhotoCardListProps) {
     <div className={styles['photo-card-list']}>
       {photos.map((photo) => (
         <div key={photo.id} className={styles['photo-card-list__col']}>
-          <PhotoCard path={`${Pages.PHOTOS}/${photo.id}`} {...photo} />
+          <PhotoCard path={`${Pages.PHOTOS}/s/${photo.id}`} {...photo} />
         </div>
       ))}
     </div>

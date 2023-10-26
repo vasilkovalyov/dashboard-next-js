@@ -1,5 +1,5 @@
-import { IUrls } from './common';
-import { IPostUser } from './post-user';
+import { ILocation, ITag, IUrls } from './common';
+import { IPhotoUser } from './photo-user';
 
 export interface IPhoto {
   id: string;
@@ -14,12 +14,19 @@ export interface IPhoto {
   likes: number;
   current_user_collections: [];
   sponsorship: ISponsorship;
-  user: IPostUser;
+  user: IPhotoUser;
 }
 
 interface ISponsorship {
   impression_urls: string[];
   tagline: string;
   tagline_url: string;
-  sponsor: IPostUser;
+  sponsor: IPhotoUser;
+}
+
+export interface IPhotoPostSingle extends IPhoto {
+  downloads: string;
+  tags: ITag[];
+  tags_preview: ITag[];
+  location: ILocation;
 }
