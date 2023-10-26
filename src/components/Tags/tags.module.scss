@@ -1,0 +1,17 @@
+.tags {
+  padding: 10px 0;
+
+  & &__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  & &__item {
+    margin-bottom: 10px;
+
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+}

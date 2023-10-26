@@ -8,3 +8,6 @@ export { PhotoCardList } from './PhotoCardList';
 export * from './UserLabelDescription';
 export { BannerSearch } from './BannerSearch';
 export { Search } from './Search';
+export { Tags } from './Tags';
+export * from './RelatedCollections';
+export { RelatedPhotoCollection } from './RelatedPhotoCollection';
