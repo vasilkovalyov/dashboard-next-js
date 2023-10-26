@@ -11,6 +11,7 @@ export default function Tags({ tags }: TagsProps) {
             <Button
               variant="outlined"
               size="small"
+              disabled
               className={styles['tags__button']}
             >
               {tag.title}

@@ -8,14 +8,14 @@ const service = new UnsplashService();
 async function getData(slug: string) {
   try {
     const response = await service.searchPhoto(slug);
-    return response.data;
+    return response.data.results;
   } catch (e) {
     throw new Error('Failed to fetch data');
   }
 }
 
 function convertToString(search: string) {
-  return search.replace('-', ' ');
+  return search.replace(/-/g, ' ');
 }
 
 export default async function Topic(props: { params: { slug: string } }) {

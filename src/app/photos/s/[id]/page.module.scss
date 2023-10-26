@@ -25,11 +25,19 @@
     text-transform: capitalize;
     display: inline-flex;
     gap: 10px;
+
+    [data-theme='dark'] & {
+      color: #ffffff;
+    }
   }
 
   & &__counter-value {
     font-size: 15px;
     color: #111111;
+
+    [data-theme='dark'] & {
+      color: #ffffff;
+    }
   }
 
   & &__published {

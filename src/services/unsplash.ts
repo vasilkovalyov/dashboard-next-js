@@ -36,7 +36,9 @@ class UnsplashService {
     return response;
   }
 
-  async searchPhoto(search: string): Promise<AxiosResponse<IPhoto[]>> {
+  async searchPhoto(
+    search: string
+  ): Promise<AxiosResponse<{ results: IPhoto[] }>> {
     const response = await axios.get(
       `${this.baseUrl}/search/photos?client_id=${this.clientId}&page=1&query=${search}`
     );
