@@ -2,6 +2,7 @@ import { IPhotoSingleData } from '@/types/photo-single-data';
 import { IPhoto } from '@/types/photo';
 import { ITopic } from '@/types/topic';
 import axios, { AxiosResponse } from 'axios';
+import { PostsWithPaginationInfo } from '@/types/response';
 
 class UnsplashService {
   private baseUrl: string;
@@ -37,10 +38,11 @@ class UnsplashService {
   }
 
   async searchPhoto(
-    search: string
-  ): Promise<AxiosResponse<{ results: IPhoto[] }>> {
+    search: string,
+    page: number = 1
+  ): Promise<AxiosResponse<PostsWithPaginationInfo<IPhoto>>> {
     const response = await axios.get(
-      `${this.baseUrl}/search/photos?client_id=${this.clientId}&page=1&query=${search}`
+      `${this.baseUrl}/search/photos?client_id=${this.clientId}&page=${page}&query=${search}`
     );
     return response;
   }

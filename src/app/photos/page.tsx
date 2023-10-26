@@ -11,7 +11,9 @@ import {
   TopicsList,
   PhotoCardList,
   BannerSearch,
+  Button,
 } from '@/components';
+import { useLoadPhotos } from '@/hooks/useLoadPhotos';
 
 const service = new UnsplashService();
 
@@ -27,9 +29,16 @@ const convertTopicsForComponent = (topics: ITopic[]): TopicItemProps[] => {
 };
 
 export default function Photos() {
-  const [loadingPhotos, setLoadingPhotos] = useState<boolean>(false);
+  const {
+    photos,
+    loadingPhotos,
+    resetPage,
+    setLoadingPhotos,
+    setPhotos,
+    nextPage,
+    setActiveTopic,
+  } = useLoadPhotos();
   const [topicts, setTopics] = useState<TopicItemProps[]>([]);
-  const [photos, setPhotos] = useState<any[]>([]);
 
   async function loadTopics() {
     try {
@@ -40,26 +49,15 @@ export default function Photos() {
     }
   }
 
-  async function loadPhotos() {
-    try {
-      setLoadingPhotos(true);
-      const response = await service.getPhotos(1);
-      setPhotos(response.data);
-    } catch (e) {
-      console.log(e);
-    } finally {
-      setLoadingPhotos(false);
-    }
-  }
-
   useEffect(() => {
     loadTopics();
-    loadPhotos();
   }, []);
 
   async function onChooseTopic(topic: string) {
     try {
       setLoadingPhotos(true);
+      resetPage();
+      setActiveTopic(topic);
       setPhotos([]);
       const response = await service.getPhotosByTopic(topic);
       setPhotos(response.data);
@@ -80,20 +78,23 @@ Powered by creators everywhere."
       <section className={styles['section-photos']}>
         <div className="container">
           <h1>Photos</h1>
-          <div className={styles['section-photos__body']}>
-            <TopicsList topics={topicts} onChange={onChooseTopic} />
-            {loadingPhotos ? (
-              <div>Loading...</div>
-            ) : (
-              <>
-                {photos.length ? (
+          <TopicsList topics={topicts} onChange={onChooseTopic} />
+          {loadingPhotos ? (
+            <div>Loading...</div>
+          ) : (
+            <>
+              {photos.length ? (
+                <>
                   <PhotoCardList photos={photos} />
-                ) : (
-                  <div>No photos</div>
-                )}
-              </>
-            )}
-          </div>
+                  <Button size="middle" variant="outlined" onClick={nextPage}>
+                    {loadingPhotos ? 'Loading...' : 'Load more'}
+                  </Button>
+                </>
+              ) : (
+                <div>No photos</div>
+              )}
+            </>
+          )}
         </div>
       </section>
     </>
